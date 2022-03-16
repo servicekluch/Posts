@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="WallServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-03-16T09:42:29" hostname="DESING" time="0.096">
+  <properties/>
+  <testcase name="update_false" classname="WallServiceTest" time="0.095"/>
+  <testcase name="update_true" classname="WallServiceTest" time="0.001"/>
+  <testcase name="add" classname="WallServiceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

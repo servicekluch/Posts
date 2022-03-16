@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.kt</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Posts</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Main.kt</span></div><h1>Main.kt</h1><pre class="source lang-java linenums">fun main() {
+
+<span class="nc" id="L3">    val wallService = WallService()</span>
+<span class="nc" id="L4">    val firstPost = wallService.add(Post(text=&quot;Hello VK on Java&quot;, date = 2022))</span>
+<span class="nc" id="L5">    val updateFirstPost = wallService.update(firstPost.copy(text = &quot;Hello VK on Kotlin&quot;))</span>
+
+<span class="nc" id="L7">    print(firstPost)</span>
+<span class="nc" id="L8">    print(updateFirstPost)</span>
+
+<span class="nc" id="L10">}</span>
+
+
+
+<span class="fc" id="L14">data class Post(</span>
+<span class="fc" id="L15">    val id: Int = 0,</span>
+    /*Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р·Р°РїРёСЃРё*/
+<span class="pc" id="L17">    val owner_id: Int = 0,</span>
+    /*Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІР»Р°РґРµР»СЊС†Р° СЃС‚РµРЅС‹, РЅР° РєРѕС‚РѕСЂРѕР№ СЂР°Р·РјРµС‰РµРЅР° Р·Р°РїРёСЃСЊ. Р’ РІРµСЂСЃРёСЏС… API РЅРёР¶Рµ 5.7 СЌС‚Рѕ РїРѕР»Рµ РЅР°Р·С‹РІР°РµС‚СЃСЏ to_id.*/
+<span class="pc" id="L19">    val from_id: Int = 0,</span>
+    /*Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р°РІС‚РѕСЂР° Р·Р°РїРёСЃРё (РѕС‚ С‡СЊРµРіРѕ РёРјРµРЅРё РѕРїСѓР±Р»РёРєРѕРІР°РЅР° Р·Р°РїРёСЃСЊ).*/
+<span class="pc" id="L21">    val created_by: Int = 0,</span>
+    /*Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°, РєРѕС‚РѕСЂС‹Р№ РѕРїСѓР±Р»РёРєРѕРІР°Р» Р·Р°РїРёСЃСЊ (РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ СЃРѕРѕР±С‰РµСЃС‚РІ РїСЂРё Р·Р°РїСЂРѕСЃРµ СЃ РєР»СЋС‡РѕРј РґРѕСЃС‚СѓРїР° Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂР°). Р’РѕР·РІСЂР°С‰Р°РµС‚СЃСЏ РІ Р·Р°РїРёСЃСЏС…, РѕРїСѓР±Р»РёРєРѕРІР°РЅРЅС‹С… РјРµРЅРµРµ 24 С‡Р°СЃРѕРІ РЅР°Р·Р°Рґ.*/
+<span class="pc" id="L23">    val date: Int = 0,</span>
+    /*Р’СЂРµРјСЏ РїСѓР±Р»РёРєР°С†РёРё Р·Р°РїРёСЃРё РІ С„РѕСЂРјР°С‚Рµ unixtime.*/
+<span class="pc" id="L25">    val text: String = &quot;&quot;,</span>
+    /*РўРµРєСЃС‚ Р·Р°РїРёСЃРё.*/
+<span class="pc" id="L27">    val reply_owner_id: Int = 0,</span>
+    /*Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РІР»Р°РґРµР»СЊС†Р° Р·Р°РїРёСЃРё, РІ РѕС‚РІРµС‚ РЅР° РєРѕС‚РѕСЂСѓСЋ Р±С‹Р»Р° РѕСЃС‚Р°РІР»РµРЅР° С‚РµРєСѓС‰Р°СЏ.*/
+<span class="pc" id="L29">    val reply_post_id: Int = 0,</span>
+    /*Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р·Р°РїРёСЃРё, РІ РѕС‚РІРµС‚ РЅР° РєРѕС‚РѕСЂСѓСЋ Р±С‹Р»Р° РѕСЃС‚Р°РІР»РµРЅР° С‚РµРєСѓС‰Р°СЏ.*/
+<span class="pc" id="L31">    val friends_only: Boolean = false,</span>
+    /*1, РµСЃР»Рё Р·Р°РїРёСЃСЊ Р±С‹Р»Р° СЃРѕР·РґР°РЅР° СЃ РѕРїС†РёРµР№ В«РўРѕР»СЊРєРѕ РґР»СЏ РґСЂСѓР·РµР№В».*/
+<span class="pc" id="L33">    val comments: Comments? = null,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ РєРѕРјРјРµРЅС‚Р°СЂРёСЏС… Рє Р·Р°РїРёСЃРё*/
+<span class="pc" id="L35">    val copyright: Copyright? = null,</span>
+    /*Р�СЃС‚РѕС‡РЅРёРє РјР°С‚РµСЂРёР°Р»Р°*/
+<span class="pc" id="L37">    val likes: Likes? = null,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ Р»Р°Р№РєР°С… Рє Р·Р°РїРёСЃРё*/
+<span class="pc" id="L39">    val reposts: Reports? = null,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ СЂРµРїРѕСЃС‚Р°С… Р·Р°РїРёСЃРё (В«Р Р°СЃСЃРєР°Р·Р°С‚СЊ РґСЂСѓР·СЊСЏРјВ»)*/
+<span class="pc" id="L41">    val views: Views? = null,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ РїСЂРѕСЃРјРѕС‚СЂР°С… Р·Р°РїРёСЃРё*/
+<span class="pc" id="L43">    val post_type: String = &quot;&quot;,</span>
+    /*РўРёРї Р·Р°РїРёСЃРё, РјРѕР¶РµС‚ РїСЂРёРЅРёРјР°С‚СЊ СЃР»РµРґСѓСЋС‰РёРµ Р·РЅР°С‡РµРЅРёСЏ: post, copy, reply, postpone, suggest.*/
+<span class="pc" id="L45">    val signer_id: Int = 0,</span>
+    /*Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р°РІС‚РѕСЂР°, РµСЃР»Рё Р·Р°РїРёСЃСЊ Р±С‹Р»Р° РѕРїСѓР±Р»РёРєРѕРІР°РЅР° РѕС‚ РёРјРµРЅРё СЃРѕРѕР±С‰РµСЃС‚РІР° Рё РїРѕРґРїРёСЃР°РЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј;*/
+<span class="pc" id="L47">    val can_pin: Boolean = false,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°РєСЂРµРїРёС‚СЊ Р·Р°РїРёСЃСЊ (1 вЂ” РјРѕР¶РµС‚, 0 вЂ” РЅРµ РјРѕР¶РµС‚).*/
+<span class="pc" id="L49">    val can_delete: Boolean = false,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СѓРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ (1 вЂ” РјРѕР¶РµС‚, 0 вЂ” РЅРµ РјРѕР¶РµС‚).*/
+<span class="pc" id="L51">    val can_edit: Boolean = false,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ (1 вЂ” РјРѕР¶РµС‚, 0 вЂ” РЅРµ РјРѕР¶РµС‚).*/
+<span class="pc" id="L53">    val is_pinned: Boolean = false,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, С‡С‚Рѕ Р·Р°РїРёСЃСЊ Р·Р°РєСЂРµРїР»РµРЅР°.*/
+<span class="pc" id="L55">    val marked_as_ads: Boolean = false,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, СЃРѕРґРµСЂР¶РёС‚ Р»Рё Р·Р°РїРёСЃСЊ РѕС‚РјРµС‚РєСѓ В«СЂРµРєР»Р°РјР°В» (1 вЂ” РґР°, 0 вЂ” РЅРµС‚).*/
+<span class="pc" id="L57">    val is_favorite: Boolean = false,</span>
+    /*true, РµСЃР»Рё РѕР±СЉРµРєС‚ РґРѕР±Р°РІР»РµРЅ РІ Р·Р°РєР»Р°РґРєРё Сѓ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ.*/
+<span class="pc" id="L59">    val donut: Donut? = null,</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ Р·Р°РїРёСЃРё VK Donut:*/
+<span class="pc" id="L61">    val postponed_id: Int = 0</span>
+    /*Р�РґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РѕС‚Р»РѕР¶РµРЅРЅРѕР№ Р·Р°РїРёСЃРё. Р­С‚Рѕ РїРѕР»Рµ РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ С‚РѕРіРґР°, РєРѕРіРґР° Р·Р°РїРёСЃСЊ СЃС‚РѕСЏР»Р° РЅР° С‚Р°Р№РјРµСЂРµ.*/
+) {
+    override fun toString(): String {
+<span class="nc" id="L65">        return &quot;РџРѕСЃС‚: $text: Р”Р°С‚Р°: $date&quot;</span>
+    }
+<span class="fc" id="L67">}</span>
+<span class="nc" id="L68">data class Comments (</span>
+    /*РєРѕР»РёС‡РµСЃС‚РІРѕ РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ;*/
+<span class="nc" id="L70">    val can_post: Boolean = false,</span>
+    /*РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ (1 вЂ” РјРѕР¶РµС‚, 0 вЂ” РЅРµ РјРѕР¶РµС‚);*/
+<span class="nc" id="L72">    val groups_can_post: Boolean = false,</span>
+    /*РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕРіСѓС‚ Р»Рё СЃРѕРѕР±С‰РµСЃС‚РІР° РєРѕРјРјРµРЅС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ;*/
+<span class="nc" id="L74">    val can_close: Boolean = false,</span>
+    /*РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°РєСЂС‹С‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёРё Рє Р·Р°РїРёСЃРё;*/
+<span class="nc" id="L76">    val can_open: Boolean = false</span>
+    /*РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РѕС‚РєСЂС‹С‚СЊ РєРѕРјРјРµРЅС‚Р°СЂРёРё Рє Р·Р°РїРёСЃРё.*/
+<span class="nc" id="L78">)</span>
+
+<span class="nc" id="L80">data class Copyright (</span>
+<span class="nc" id="L81">    val id: Int = 0,</span>
+<span class="nc" id="L82">    val link: String = &quot;&quot;,</span>
+<span class="nc" id="L83">    val name: String = &quot;&quot;,</span>
+<span class="nc" id="L84">    val type: String = &quot;&quot;</span>
+<span class="nc" id="L85">)</span>
+
+<span class="nc" id="L87">class Likes (</span>
+   /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ Р»Р°Р№РєР°С… Рє Р·Р°РїРёСЃРё*/
+<span class="nc" id="L89">   val count: Int = 0,</span>
+   /*С‡РёСЃР»Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, РєРѕС‚РѕСЂС‹Рј РїРѕРЅСЂР°РІРёР»Р°СЃСЊ Р·Р°РїРёСЃСЊ;*/
+<span class="nc" id="L91">   val user_likes: Boolean = false,</span>
+   /*РЅР°Р»РёС‡РёРµ РѕС‚РјРµС‚РєРё В«РњРЅРµ РЅСЂР°РІРёС‚СЃСЏВ» РѕС‚ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (1 вЂ” РµСЃС‚СЊ, 0 вЂ” РЅРµС‚);*/
+<span class="nc" id="L93">   val can_like: Boolean = false,</span>
+   /*РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ РїРѕСЃС‚Р°РІРёС‚СЊ РѕС‚РјРµС‚РєСѓ В«РњРЅРµ РЅСЂР°РІРёС‚СЃСЏВ» (1 вЂ” РјРѕР¶РµС‚, 0 вЂ” РЅРµ РјРѕР¶РµС‚);*/
+<span class="nc" id="L95">   val can_publish: Boolean = false</span>
+   /*РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РјРѕР¶РµС‚ Р»Рё С‚РµРєСѓС‰РёР№ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ СЃРґРµР»Р°С‚СЊ СЂРµРїРѕСЃС‚ Р·Р°РїРёСЃРё (1 вЂ” РјРѕР¶РµС‚, 0 вЂ” РЅРµ РјРѕР¶РµС‚).*/
+<span class="nc" id="L97">)</span>
+
+<span class="nc" id="L99">class Reports (</span>
+    /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ СЂРµРїРѕСЃС‚Р°С… Р·Р°РїРёСЃРё (В«Р Р°СЃСЃРєР°Р·Р°С‚СЊ РґСЂСѓР·СЊСЏРјВ»)*/
+<span class="nc" id="L101">    val count: Int = 0,</span>
+    /*С‡РёСЃР»Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, СЃРєРѕРїРёСЂРѕРІР°РІС€РёС… Р·Р°РїРёСЃСЊ;*/
+<span class="nc" id="L103">    val user_reposted: Boolean = false</span>
+    /*РЅР°Р»РёС‡РёРµ СЂРµРїРѕСЃС‚Р° РѕС‚ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ (1 вЂ” РµСЃС‚СЊ, 0 вЂ” РЅРµС‚).*/
+<span class="nc" id="L105">)</span>
+
+<span class="nc" id="L107">class Views (</span>
+     /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ РїСЂРѕСЃРјРѕС‚СЂР°С… Р·Р°РїРёСЃРё*/
+<span class="nc" id="L109">     val count: Int = 0</span>
+     /*С‡РёСЃР»Рѕ РїСЂРѕСЃРјРѕС‚СЂРѕРІ Р·Р°РїРёСЃРё.*/
+<span class="nc" id="L111">)</span>
+
+<span class="nc" id="L113">data class Donut (</span>
+   /*Р�РЅС„РѕСЂРјР°С†РёСЏ Рѕ Р·Р°РїРёСЃРё VK Donut:*/
+<span class="nc" id="L115">   val is_donut: Boolean = false,</span>
+   /*Р·Р°РїРёСЃСЊ РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РїР»Р°С‚РЅС‹Рј РїРѕРґРїРёСЃС‡РёРєР°Рј VK Donut;*/
+<span class="nc" id="L117">   val paid_duration: Int = 0,</span>
+   /*РІСЂРµРјСЏ, РІ С‚РµС‡РµРЅРёРµ РєРѕС‚РѕСЂРѕРіРѕ Р·Р°РїРёСЃСЊ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РїР»Р°С‚РЅС‹Рј РїРѕРґРїРёСЃС‡РёРєР°Рј VK Donut;*/
+<span class="nc" id="L119">   val placeholder: Placeholder? = null,</span>
+   /*Р·Р°РіР»СѓС€РєР° РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, РєРѕС‚РѕСЂС‹Рµ РЅРµ РѕС„РѕСЂРјРёР»Рё РїРѕРґРїРёСЃРєСѓ VK Donut. РћС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІРјРµСЃС‚Рѕ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ Р·Р°РїРёСЃРё.*/
+<span class="nc" id="L121">   val can_publish_free_copy: Boolean = false,</span>
+   /*РјРѕР¶РЅРѕ Р»Рё РѕС‚РєСЂС‹С‚СЊ Р·Р°РїРёСЃСЊ РґР»СЏ РІСЃРµС… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№, Р° РЅРµ С‚РѕР»СЊРєРѕ РїРѕРґРїРёСЃС‡РёРєРѕРІ VK Donut;*/
+<span class="nc" id="L123">   val edit_mode: EditMode = EditMode.all</span>
+   /*РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕРј, РєР°РєРёРµ Р·РЅР°С‡РµРЅРёСЏ VK Donut РјРѕР¶РЅРѕ РёР·РјРµРЅРёС‚СЊ РІ Р·Р°РїРёСЃРё*/
+<span class="nc" id="L125">)</span>
+
+<span class="nc" id="L127">class Placeholder</span>
+/*Р·Р°РіР»СѓС€РєР° РґР»СЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№*/
+
+enum class EditMode {
+    /*all вЂ” РІСЃСЋ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ VK Donut.*/
+    /*duration вЂ” РІСЂРµРјСЏ, РІ С‚РµС‡РµРЅРёРµ РєРѕС‚РѕСЂРѕРіРѕ Р·Р°РїРёСЃСЊ Р±СѓРґРµС‚ РґРѕСЃС‚СѓРїРЅР° С‚РѕР»СЊРєРѕ РїР»Р°С‚РЅС‹Рј РїРѕРґРїРёСЃС‡РёРєР°Рј VK Donut.*/
+<span class="nc" id="L133">    all,</span>
+<span class="nc" id="L134">    duration}</span>
+
+<span class="fc" id="L136">class WallService {</span>
+<span class="fc" id="L137">    private var postsArray = emptyArray&lt;Post&gt;()</span>
+<span class="fc" id="L138">    private var newPostId = 1</span>
+
+    fun add(post: Post): Post {
+<span class="fc" id="L141">        val postIdNow = post.copy(id = newPostId)</span>
+<span class="fc" id="L142">        newPostId++</span>
+<span class="fc" id="L143">        postsArray += postIdNow</span>
+<span class="fc" id="L144">        return postsArray.last()</span>
+    }
+
+    fun update(post: Post): Boolean {
+<span class="fc bfc" id="L148" title="All 2 branches covered.">        for ((index, postInArray) in postsArray.withIndex()) {</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">            if (post.id == postInArray.id) {</span>
+<span class="fc" id="L150">                postsArray[index] = post.copy(id = postInArray.id, date = postInArray.date)</span>
+<span class="fc" id="L151">                return true</span>
+            }
+        }
+<span class="fc" id="L154">        return false</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
