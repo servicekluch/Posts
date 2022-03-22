@@ -1,3 +1,5 @@
+import objects.Post
+import service.WallService
 import org.junit.Test
 
 import org.junit.Assert.*
