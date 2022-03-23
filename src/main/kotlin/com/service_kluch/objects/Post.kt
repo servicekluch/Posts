@@ -1,5 +1,7 @@
 package com.service_kluch.objects
 
+import com.service_kluch.objects.attachments.Attachment
+
 data class Post(
     val id: Int = 0,
     /*Идентификатор записи*/
@@ -31,8 +33,23 @@ data class Post(
     /*Информация о просмотрах записи*/
     val postType: String = "",
     /*Тип записи, может принимать следующие значения: post, copy, reply, postpone, suggest.*/
+    /*val post_source object
+    Поле возвращается только для Standalone-приложений с ключом доступа, полученным в Implicit Flow.*/
+    val attachments: Array<Attachment>? = null,
+    /*Медиавложения записи (фотографии, ссылки и т.п.).
+    Описание массива attachments находится на отдельной странице.*/
+    /*geo
+    object	Информация о местоположении , содержит поля:
+    type (string) — тип места;
+    coordinates (string) — координаты места;
+    place (object) — описание места (если оно добавлено). Объект места.*/
     val signerId: Int = 0,
     /*Идентификатор автора, если запись была опубликована от имени сообщества и подписана пользователем;*/
+    /*copy_history
+    array	Массив, содержащий историю репостов для записи.
+    Возвращается только в том случае, если запись является репостом.
+    Каждый из объектов массива, в свою очередь,
+    является объектом-записью стандартного формата.*/
     val canPin: Boolean = false,
     /*Информация о том, может ли текущий пользователь закрепить запись (1 — может, 0 — не может).*/
     val canDelete: Boolean = false,
