@@ -1,3 +1,5 @@
+package com.service_kluch.objects.attachments
+
 interface Attachment {
     val type : AttachmentTypeEnum
 }

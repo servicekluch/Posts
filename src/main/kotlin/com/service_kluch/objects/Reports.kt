@@ -1,4 +1,4 @@
-package objects
+package com.service_kluch.objects
 
 class Reports (
     /*Информация о репостах записи («Рассказать друзьям»)*/

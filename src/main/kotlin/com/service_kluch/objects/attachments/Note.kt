@@ -1,4 +1,4 @@
-package objects.attachments
+package com.service_kluch.objects.attachments
 
 data class Note (
     /*Объект, описывающий заметку, содержит следующие поля:*/

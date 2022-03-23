@@ -1,4 +1,4 @@
-package objects
+package com.service_kluch.objects
 
 class Likes (
     /*Информация о лайках к записи*/

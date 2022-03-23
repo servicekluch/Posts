@@ -1,4 +1,4 @@
-package objects.attachments
+package com.service_kluch.objects.attachments
 
 data class Audio (
     /*Аудиозапись

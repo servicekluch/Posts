@@ -1,7 +1,8 @@
-import objects.Post
-import service.WallService
-import org.junit.Test
+package com.service_kluch
 
+import com.service_kluch.objects.Post
+import com.service_kluch.service.WallService
+import org.junit.Test
 import org.junit.Assert.*
 
 class WallServiceTest {

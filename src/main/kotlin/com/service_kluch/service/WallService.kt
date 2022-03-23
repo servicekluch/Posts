@@ -1,5 +1,6 @@
-package service
-import objects.Post
+package com.service_kluch.service
+
+import com.service_kluch.objects.Post
 
 class WallService {
     private var postsArray = emptyArray<Post>()

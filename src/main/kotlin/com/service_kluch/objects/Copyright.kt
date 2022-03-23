@@ -1,4 +1,4 @@
-package objects
+package com.service_kluch.objects
 
 data class Copyright (
     val id: Int = 0,

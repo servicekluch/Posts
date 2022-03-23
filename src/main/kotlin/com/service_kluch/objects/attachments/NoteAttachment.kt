@@ -1,7 +1,4 @@
-package objects.attachments
-
-import Attachment
-import AttachmentTypeEnum
+package com.service_kluch.objects.attachments
 
 data class NoteAttachment(
     override val type: AttachmentTypeEnum = AttachmentTypeEnum.NOTE,

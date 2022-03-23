@@ -1,4 +1,4 @@
-package objects
+package com.service_kluch.objects
 
 data class Post(
     val id: Int = 0,

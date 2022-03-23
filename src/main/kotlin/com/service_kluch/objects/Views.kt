@@ -1,4 +1,4 @@
-package objects
+package com.service_kluch.objects
 
 class Views (
     /*Информация о просмотрах записи*/

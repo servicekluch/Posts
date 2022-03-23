@@ -1,4 +1,4 @@
-package objects
+package com.service_kluch.objects
 
 data class Comments (
     /*количество комментариев;*/
