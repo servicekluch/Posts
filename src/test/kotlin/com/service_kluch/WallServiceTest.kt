@@ -38,7 +38,8 @@ class WallServiceTest {
         val post = Post()
         wallService.add(post.copy(text="Hello VK on Java", date = 2021))
         wallService.add(post.copy(text="Hello VK on Kotlin", date = 2022))
-        wallService.createComment(Comment(postId = 1, text="Hello new comments"))
+        val result = wallService.createComment(Comment(postId = 1, text="Hello new comments"))
+        assertNotNull(result)
     }
 
     @Test(expected = PostNotFoundException::class)
