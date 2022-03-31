@@ -1,7 +1,6 @@
 package com.service_kluch.objects.attachments
 
-
-data class PhotoAttachment(
-    override val type: AttachmentTypeEnum = AttachmentTypeEnum.PHOTO,
-    val attachment : Photo
-) : Attachment
+data class AttachmentPhoto(val photo: Photo) : Attachment {
+    override val type: AttachmentType
+        get() = AttachmentType.PHOTO
+}
