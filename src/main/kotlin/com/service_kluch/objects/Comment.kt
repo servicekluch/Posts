@@ -12,9 +12,13 @@ data class Comment (
      */
     val id: Int = 0,
     /**
+     *  Идентификатор поста на который сделан комментарий.
+     */
+    val postId: Int = 0,
+    /**
      * Идентификатор автора комментария
      */
-    val from_id: Int = 0,
+    val fromId: Int = 0,
     /**
      * Дата создания комментария в формате Unixtime
      */
@@ -30,19 +34,19 @@ data class Comment (
     /**
      * Идентификатор пользователя или сообщества, в ответ которому оставлен текущий комментарий (если применимо)
      */
-    val reply_to_user: Int = 0,
+    val replyToUser: Int = 0,
     /**
      * Идентификатор комментария, в ответ на который оставлен текущий (если применимо).
      */
-    val reply_to_comment: Int = 0,
+    val replyToComment: Int = 0,
     /**
      * Медиавложения комментария (фотографии, ссылки и т.п.).
      */
-    val attachments: Attachment.Video? = null,
+    val attachments: Attachment? = null,
     /**
      * Массив идентификаторов родительских комментариев.
       */
-    val parents_stack:Array<CommentpParentsStack>? = null,
+    val parentsStack:Array<CommentpParentsStack>? = null,
     /**
      * Информация о вложенной ветке комментариев
      */
@@ -55,7 +59,7 @@ class DonutComment (
     /**
      * является ли комментатор подписчиком VK Donut
      */
-    val is_don: Boolean = false,
+    val isDon: Boolean = false,
 
     /**
      * заглушка для пользователей, которые не оформили подписку VK Donut.
@@ -77,15 +81,15 @@ class CommentThread (
     /**
      * может ли текущий пользователь оставлять комментарии в этой ветке.
      */
-    val can_post: Boolean = false,
+    val canPost: Boolean = false,
     /**
      * нужно ли отображать кнопку «ответить» в ветке.
      */
-    val show_reply_button: Boolean = false,
+    val showReplyButton: Boolean = false,
     /**
      * могут ли сообщества оставлять комментарии в ветке.
      */
-    val groups_can_post: Boolean = false
+    val groupsCanPost: Boolean = false
 )
 /**
  * массив объектов комментариев к записи (только для метода wall.getComments).
@@ -96,4 +100,3 @@ class CommentArray ()
  * Массив идентификаторов родительских комментариев.
  */
 class CommentpParentsStack ()
-
