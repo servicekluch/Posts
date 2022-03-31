@@ -1,400 +1,50 @@
 package com.service_kluch.objects.attachments
 
-/**
- * Аудиозапись Объект, описывающий аудиозапись
- */
-sealed interface Attachment {
-    data class Audio (
-        /**
-         * Идентификатор аудиозаписи
-         */
-        val id: Int = 0,
-        /**
-         * Идентификатор владельца аудиозаписи
-         */
-        val owner_id: Int = 0,
-        /**
-         * Исполнитель
-         */
-        val artist: String = "",
-        /**
-         * Название композиции
-         */
-        val title: String = "",
-        /**
-         * Длительность аудиозаписи в секундах
-         */
-        val duration: Int = 0,
-        /**
-         * Ссылка на mp3
-         */
-        val url:String = "",
-        /**
-         * Идентификатор текста аудиозаписи (если доступно)
-         */
-        val lyrics_id: Int = 0,
-        /**
-         * Идентификатор альбома, в котором находится аудиозапись (если присвоен).
-         */
-        val album_id: Int = 0,
-        /**
-         * Идентификатор жанра из списка аудио жанров
-         */
-        val genre_id: Int = 0,
-        /**
-         * Дата добавления
-         */
-        val date: Int = 0,
-        /**
-         * true если включена опция «Не выводить при поиске»
-         * Если опция отключена, поле не возвращается
-         */
-        val no_search: Boolean = true,
-        /**
-         * true если аудио в высоком качестве
-         */
-        val is_hq: Boolean = false
-    ):Attachment
+sealed class Attachment{
+    abstract val attachmentType: AttachmentType
 
-    /**
-     * Объект, описывающий файл
-     */
-    data class Doc (
-        /**
-         * Идентификатор файла
-         */
-        val id: Int = 0,
-        /**
-         * Идентификатор пользователя, загрузившего файл
-         */
-        val owner_id: Int = 0,
-        /**
-         * Название файла
-         */
-        val title: String = "",
-        /**
-         * Размер файла в байтах
-         */
-        val size: Int = 0,
-        /**
-         * Расширение файла
-         */
-        val ext: String = "",
-        /**
-         * Адрес файла, по которому его можно загрузить
-         */
-        val url: String = "",
-        /**
-         * Дата добавления в формате Unixtime.
-         */
-        val date: Int = 0,
-        /**
-         * Тип файла.  Возможные значения:
-        1 — текстовые документы;
-        2 — архивы;
-        3 — gif;
-        4 — изображения;
-        5 — аудио;
-        6 — видео;
-        7 — электронные книги;
-        8 — неизвестно
-         */
-        val type: Int = 0,
-        /**
-         * Информация для предварительного просмотра файла
-         */
-        val preview: Preview? = null
-    ):Attachment
+    data class AttachmentAudio (val audio: Audio): Attachment() {
+        override val attachmentType = AttachmentType.AUDIO
+    }
 
-    /**
-     * Объект, описывающий заметку,
-     */
-    data class Note (
-        /**
-         * Идентификатор заметки
-         */
-        val id: Int = 0,
-        /**
-         * Идентификатор владельца заметки
-         */
-        val owner_id: Int = 0,
-        /**
-         * Заголовок заметки
-         */
-        val title: String = "",
-        /**
-         * Текст заметки
-         */
-        val text: String = "",
-        /**
-         * Дата создания заметки в формате Unixtime
-         */
-        val date: Int = 0,
-        /**
-         * Количество комментариев
-         */
-        val comments: Int = 0,
-        /**
-         * Количество прочитанных комментариев
-         * (только при запросе информации о заметке текущего пользователя)
-         */
-        val read_comments: Int = 0,
-        /**
-         * URL страницы для отображения заметки
-         */
-        val view_url: String = "",
-        /**
-         * Настройки приватности комментирования заметки
-         */
-        val privacy_view: String = "",
-        /**
-         * Есть ли возможность оставлять комментарии
-         */
-        val can_comment: Boolean= false,
-        /**
-         * Тэги ссылок на wiki
-         */
-        val text_wiki: String = ""
-    ):Attachment
+    data class AttachmentDoc (val doc: Doc): Attachment(){
+        override val attachmentType = AttachmentType.DOC
+    }
 
-    /**
-     * Объект, описывающий фотографию
-     */
-    data class Photo (
-        /**
-         * Идентификатор фотографии
-         */
-        val id: Int = 0,
-        /**
-         * Идентификатор альбома, в котором находится фотография
-         */
-        val album_id: Int = 0,
-        /**
-         * Идентификатор владельца фотографии
-         */
-        val owner_id: Int = 0,
-        /**
-         * Идентификатор пользователя, загрузившего фото
-         * (если фотография размещена в сообществе)
-         */
-        val user_id: Int = 0,
-        /**
-         * Текст описания фотографии
-         */
-        val text: String = "",
-        /**
-         * Дата добавления в формате Unixtime
-         */
-        val date: Int = 0,
-        /**
-         * Массив с копиями изображения в разных размерах
-         */
-        val sizes: Array<CopyImage>,
-        /**
-         * Ширина оригинала фотографии в пикселах
-         */
-        val width: Int = 0,
-        /**
-         * Высота оригинала фотографии в пикселах
-         */
-        val height: Int = 0
-    ):Attachment
+    data class AttachmentLink (val note: Note): Attachment(){
+        override val attachmentType = AttachmentType.NOTE
+    }
 
-    /**
-     * Объект, описывающий видеозапись
+    data class AttachmentPhoto (val photo: Photo): Attachment(){
+        override val attachmentType = AttachmentType.PHOTO
+    }
+
+    data class AttachmentVideo (val video: Video): Attachment(){
+        override val attachmentType = AttachmentType.VIDEO
+    }
+}
+
+enum class AttachmentType {
+    /**Фотография (type = photo)
+     * Видеозапись (type = video)
+     * Аудиозапись (type = audio)
+     * Документ (type = doc)
+     * Граффити (type = graffiti)
+     * Ссылка (type = link)
+     * Заметка (type = note)
+     * Контент приложения (type = app)
+     * Опрос (type = poll)
+     * Вики-страница (type = page)
+     * Альбом с фотографиями (type=album)
+     * Список фотографий (type=photos_list)
+     * Товар (type = market)
+     * Подборка товаров (type = market_album)
+     * Стикер (type = sticker)
+     * Карточки (type = pretty_cards)
+     * Встреча (type = event)
      */
-    data class Video (
-        /**
-         * Идентификатор видеозаписи
-         */
-        val id: Int = 0,
-        /**
-         * Идентификатор владельца видеозаписи
-         */
-        val owner_id: Int = 0,
-        /**
-         * Название видеозаписи
-         */
-        val title: String = "",
-        /**
-         * Текст описания видеозаписи
-         */
-        val description: String = "",
-        /**
-         * Длительность ролика в секундах
-          */
-        val duration: Int = 0,
-        /**
-         * Изображение обложки
-         */
-        val image: Array<ImageCover>,
-        /**
-         * Изображение первого кадра
-         */
-        val first_frame: Array<ImageFirsFrame>,
-        /**
-         * Дата создания видеозаписи в формате Unixtime
-         */
-        val date: Int = 0,
-        /**
-         * Дата добавления видеозаписи пользователем или группой в формате Unixtime
-         */
-        val adding_date: Int = 0,
-        /**
-         * Количество просмотров видеозаписи
-         */
-        val views: Int = 0,
-        /**
-         * Если видео внешнее, количество просмотров ВКонтакте
-         */
-        val local_views: Int = 0,
-        /**
-         * Количество комментариев к видеозаписи
-         */
-        val comments: Int = 0,
-        /**
-         * URL страницы с плеером, который можно использовать для воспроизведения ролика в браузере.
-         * Поддерживается flash и HTML5, плеер всегда масштабируется по размеру окн
-         */
-        val player: String = "",
-        /**
-         * Название платформы (для видеозаписей, добавленных с внешних сайтов)
-         */
-        val platform: String = "",
-        /**
-         * Может ли пользователь добавить видеозапись к себе.
-         * false — не может добавить.
-         * true — может добавить
-         */
-        val can_add: Boolean = true,
-        /**
-         * Поле возвращается, если видеозапись приватная
-         * (например, была загружена в личное сообщение), всегда содержит true
-         */
-        val is_private: Boolean = true,
-        /**
-         * Ключ доступа к объекту. Подробнее см. Ключ доступа к данным access_key
-         */
-        val access_key: String = "",
-        /**
-         * Поле возвращается в том случае, если видеоролик
-         * находится в процессе обработки, всегда содержит 1
-         */
-        val processing: Boolean = true,
-        /**
-         * true, если объект добавлен в закладки у текущего пользователя
-         */
-        val is_favorite: Boolean = true,
-        /**
-         * Может ли пользователь комментировать видео
-         * false - не может комментировать
-         * true — может комментировать
-         */
-        val can_comment: Boolean = false,
-        /**
-         * Может ли пользователь редактировать видео.
-         * false — не может редактировать.
-         * true — может редактировать
-         */
-        val can_edit: Boolean = false,
-        /**
-         * Может ли пользователь добавить видео в список <<Мне нравится>>.
-         * false — не может добавить.
-         * true — может добавить
-         */
-        val can_like: Boolean = false,
-        /**
-         * Может ли пользователь сделать репост видео.
-         * false — не может сделать репост.
-         * true — может сделать репост
-         */
-        val can_repost: Boolean = false,
-        /**
-         * Может ли пользователь подписаться на автора видео.
-         * false — не может подписаться.
-         * true — может подписаться
-         */
-        val can_subscribe: Boolean= false,
-        /**
-         * Может ли пользователь добавить видео в избранное.
-         * false — не может добавить.
-         * true — может добавить
-         */
-        val can_add_to_faves: Boolean = false,
-        /**
-         * Может ли пользователь прикрепить кнопку действия к видео.
-         * false — не может прикрепить.
-         * true — может прикрепить
-         */
-        val can_attach_link: Boolean = false,
-        /**
-         * Ширина видео
-         */
-        val width: Int = 0,
-        /**
-         * Высота видео
-         */
-        val height: Int = 0,
-        /**
-         * Идентификатор пользователя, загрузившего видео,
-         * если оно было загружено в группу одним из участников
-         */
-        val user_id: Int = 0,
-        /**
-         * Конвертируется ли видео.
-         * false — не конвертируется.
-         * true — конвертируется
-         */
-        val converting: Boolean = false,
-        /**
-         * Добавлено ли видео в альбомы пользователя.
-         * false — не добавлено.
-         * true — добавлено
-         */
-        val added: Boolean = false,
-        /**
-         * Подписан ли пользователь на автора видео.
-         * false — не подписан.
-         * true — подписан.
-         */
-        val is_subscribed:Boolean = true,
-        /**
-         * Поле возвращается в том случае, если видео зациклено, всегда содержит true
-         */
-        val repeat: Boolean = true,
-        /**
-         * Тип видеозаписи. Может принимать значения: video, music_video, movie
-         */
-        val type: Type = Type.VIDEO,
-        /**
-         * Баланс донатов в прямой трансляции
-         */
-        val balance: Int = 0,
-        /**
-         * Статус прямой трансляции. Может принимать значения: waiting, started, finished, failed, upcoming
-         */
-        val live_status: LiveStatus = LiveStatus.WAITING,
-        /**
-         * Поле возвращается в том случае, если видеозапись является прямой трансляцией,
-         * всегда содержит true.
-         * Обратите внимание, в этом случае в поле duration содержится значение false
-         */
-        val live: Boolean = true,
-        /**
-         * Поле свидетельствует о том, что трансляция скоро начнётся. Для live = true
-         */
-        val upcoming: Boolean = false,
-        /**
-         * Количество зрителей прямой трансляции
-         */
-        val spectators: Int = 0,
-        /**
-         * Содержит объект отметки «Мне нравится»
-         */
-        val likes: LikesVideo? = null,
-        /**
-         * Содержит объект репоста
-         */
-        val reposts: RepostsVideo? = null
-    ):Attachment
+    PHOTO, VIDEO, AUDIO, DOC, GRAFFITI,
+    LINK, NOTE, APP, POLL, PAGE,
+    ALBUM, PHOTOS_LIST, MARKET, MARKET_ALBUM,
+    STICKER, PRETTY_CARDS, EVENT
 }
