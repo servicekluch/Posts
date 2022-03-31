@@ -1,11 +1,6 @@
-package com.service_kluch.service
+package com.service_kluch
 
-import com.service_kluch.Comment
-import com.service_kluch.Post
-import com.service_kluch.PostNotFoundException
-import com.service_kluch.WallService
 import org.junit.Test
-
 import org.junit.Assert.*
 
 class WallServiceTest {
@@ -20,38 +15,38 @@ class WallServiceTest {
     @Test
     fun update_true() {
         val wallService = WallService()
-        val firstPost = wallService.add(Post(text="Hello VK on Java", date = 2022))
-        val result = wallService.update(firstPost.copy(ownerId = 7,text = "Hello VK on Kotlin"))
-        assertFalse(result)
+        val post = Post()
+        wallService.add(post.copy(text="Hello VK on Java", date = 2021))
+        wallService.add(post.copy(text="Hello VK on Kotlin", date = 2022))
+        val result = wallService.update(post.copy(id = 1, text="Hello VK on Kotlin 2023", date = 2023))
+        assertTrue(result)
     }
 
     @Test
     fun update_false() {
         val wallService = WallService()
-        val firstPost = wallService.add(Post(text="Hello VK on Java", date = 2022))
-        val result = wallService.update(firstPost.copy(text = "Hello VK on Kotlin"))
+        val post = Post()
+        wallService.add(post.copy(text="Hello VK on Java", date = 2021))
+        wallService.add(post.copy(text="Hello VK on Kotlin", date = 2022))
+        val result = wallService.update(post.copy(id = 7, text="Hello VK on Kotlin 2023", date = 2023))
         assertFalse(result)
     }
 
-    @Test (expected = PostNotFoundException::class)
+    @Test
     fun createComment() {
         val wallService = WallService()
-        wallService.createComment(Comment(3, 5))
-        wallService.add(Post(3))
-        val create = Comment(7, 5)
-        val result = wallService.createComment(create)
-
-        assertTrue(result)
+        val post = Post()
+        wallService.add(post.copy(text="Hello VK on Java", date = 2021))
+        wallService.add(post.copy(text="Hello VK on Kotlin", date = 2022))
+        wallService.createComment(Comment(postId = 1, text="Hello new comments"))
     }
 
     @Test(expected = PostNotFoundException::class)
     fun shouIdTrow(){
         val wallService = WallService()
-        wallService.createComment(Comment(3, 5))
-        wallService.add(Post(3))
-        val create = Comment(7, 15)
-        val result = wallService.createComment(create)
-
-        assertFalse(result)
+        val post = Post()
+        wallService.add(post.copy(text="Hello VK on Java", date = 2021))
+        wallService.add(post.copy(text="Hello VK on Kotlin", date = 2022))
+        wallService.createComment(Comment(postId = 7, text="Hello not found post"))
     }
 }
