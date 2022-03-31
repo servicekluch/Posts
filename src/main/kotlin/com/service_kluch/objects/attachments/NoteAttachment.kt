@@ -1,6 +1,6 @@
 package com.service_kluch.objects.attachments
 
-data class NoteAttachment(
-    override val type: AttachmentTypeEnum = AttachmentTypeEnum.NOTE,
-    val attachment: Note
-) : Attachment
+data class AttachmentNote(val note: Note) : Attachment {
+    override val type: AttachmentType
+        get() = AttachmentType.NOTE
+}
