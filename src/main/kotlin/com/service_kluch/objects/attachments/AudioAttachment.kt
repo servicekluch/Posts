@@ -1,6 +1,6 @@
 package com.service_kluch.objects.attachments
 
-class AudioAttachment (
-    override val type: AttachmentTypeEnum = AttachmentTypeEnum.AUDIO,
-    val attachment : Audio
-) : Attachment
+data class AttachmentAudio(val audio: Audio) : Attachment {
+    override val type: AttachmentType
+        get() = AttachmentType.AUDIO
+}
