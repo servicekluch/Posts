@@ -1,4 +1,4 @@
 package com.service_kluch
 
-class PostNotFoundException : RuntimeException() {
+class PostNotFoundException(message: String = "Пост не существует"): RuntimeException(message) {
 }
