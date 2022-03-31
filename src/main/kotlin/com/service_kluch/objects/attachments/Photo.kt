@@ -1,8 +1,5 @@
 package com.service_kluch.objects.attachments
 
-/**
- * Объект, описывающий фотографию
- */
 data class Photo (
     /**
      * Идентификатор фотографии
@@ -42,6 +39,7 @@ data class Photo (
      */
     val height: Int = 0
 )
+
 /**
  * Массив с копиями изображения в разных размерах
  */
