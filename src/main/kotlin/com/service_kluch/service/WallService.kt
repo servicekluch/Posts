@@ -22,8 +22,8 @@ class WallService {
         return false
     }
     fun createComment(comment: Comment) : Boolean {
-        for (post in postsArray ){
-            if (post.id == comment.reply_to_comment){
+        for (post in postsArray){
+            if (comment.postId== post.id) {
                 commentsArray += comment
                 return true
             }
