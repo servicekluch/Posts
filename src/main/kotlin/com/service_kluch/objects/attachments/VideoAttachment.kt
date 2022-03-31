@@ -1,6 +1,6 @@
 package com.service_kluch.objects.attachments
 
-class VideoAttachment (
-    override val type: AttachmentTypeEnum = AttachmentTypeEnum.VIDEO,
-    val attachment: Video
-) : Attachment
+data class AttachmentVideo(val video: Video) : Attachment {
+    override val type: AttachmentType
+        get() = AttachmentType.VIDEO
+}
