@@ -3,7 +3,7 @@ package com.service_kluch.objects.attachments
 /**
  * Объект, описывающий видеозапись
  */
-data class Video (
+data class Audio (
     /**
      * Идентификатор видеозаписи
      */
