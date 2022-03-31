@@ -1,8 +1,5 @@
 package com.service_kluch.objects.attachments
 
-/**
- * Объект, описывающий видеозапись
- */
 data class Video (
     /**
      * Идентификатор видеозаписи
@@ -197,6 +194,7 @@ data class Video (
      */
     val reposts: RepostsVideo? = null
 )
+
 /**
  * Изображение обложки
  */
