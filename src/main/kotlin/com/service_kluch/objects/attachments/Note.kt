@@ -1,8 +1,5 @@
 package com.service_kluch.objects.attachments
 
-/**
- * Объект, описывающий заметку,
- */
 data class Note (
     /**
      * Идентификатор заметки
