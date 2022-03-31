@@ -1,5 +1,7 @@
 package com.service_kluch
 
+import com.service_kluch.objects.attachments.Attachment
+
 /**
  * Объект, описывающий запись на стене пользователя или сообщества
  */
@@ -66,6 +68,10 @@ data class Post(
      * Тип записи, может принимать следующие значения: post, copy, reply, postpone, suggest.
      * */
     val postType: String = "",
+    /**
+     * Медиавложения записи (фотографии, ссылки и т.п.).
+     */
+    val attachments: Array<Attachment>? = null,
     /**
      * Идентификатор автора, если запись была опубликована от имени сообщества и подписана пользователем;
      * */
