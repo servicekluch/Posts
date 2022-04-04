@@ -17,9 +17,9 @@ class WallServiceTest {
     fun update_true() {
         val wallService = WallService()
         val post = Post()
-        wallService.add(post.copy(text="Hello VK on Java", date = 2021))
+        val newPost = wallService.add(post.copy(text="Hello VK on Java", date = 2021))
         wallService.add(post.copy(text="Hello VK on Kotlin", date = 2022))
-        val result = wallService.update(post.copy(id = 1, text="Hello VK on Kotlin 2023", date = 2023))
+        val result = wallService.update(newPost)
         assertTrue(result)
     }
 
@@ -27,9 +27,7 @@ class WallServiceTest {
     fun update_false() {
         val wallService = WallService()
         val post = Post()
-        wallService.add(post.copy(text="Hello VK on Java", date = 2021))
-        wallService.add(post.copy(text="Hello VK on Kotlin", date = 2022))
-        val result = wallService.update(post.copy(id = 7, text="Hello VK on Kotlin 2023", date = 2023))
+        val result = wallService.update(post)
         assertFalse(result)
     }
 }
