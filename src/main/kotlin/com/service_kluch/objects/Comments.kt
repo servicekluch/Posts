@@ -23,5 +23,9 @@ data class Comments (
     /**
      * может ли текущий пользователь открыть комментарии к записи..
      */
-    val canOpen: Boolean = false
+    val canOpen: Boolean = false,
+    /**
+     * Список комментарий к посту
+     */
+    val comments: MutableList<Comment> = mutableListOf()
 )
